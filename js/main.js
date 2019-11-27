@@ -1,12 +1,15 @@
 var width =500;
 var height= 500;
 
-d3.csv("calvinCollegeSeniorScores.csv", function(csv) {
+d3.csv("./data/movies.csv", function(csv) {
     for (var i=0; i<csv.length; ++i) {
-		csv[i].GPA = Number(csv[i].GPA);
-		csv[i].SATM = Number(csv[i].SATM);
-		csv[i].SATV = Number(csv[i].SATV);
-		csv[i].ACT = Number(csv[i].ACT);
+        csv[i].duration = Number(csv[i].duration);
+        console.log(csv[i]);
+		//csv[i].GPA = Number(csv[i].GPA);
+		//csv[i].SATM = Number(csv[i].SATM);
+		//csv[i].SATV = Number(csv[i].SATV);
+        //csv[i].ACT = Number(csv[i].ACT);
+
     }
     var satmExtent = d3.extent(csv, function(row) { return row.SATM; });
     var satvExtent = d3.extent(csv, function(row) { return row.SATV; });
