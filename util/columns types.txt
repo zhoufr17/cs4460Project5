@@ -1,0 +1,28 @@
+color,                                  STRING
+director_name,                          STRING
+num_critic_for_reviews,
+duration,
+director_facebook_likes,
+actor_3_facebook_likes,
+actor_2_name,                           STRING
+actor_1_facebook_likes,
+gross,
+genres,                                 STRING
+actor_1_name,                           STRING
+movie_title,                            STRING
+num_voted_users,
+cast_total_facebook_likes,
+actor_3_name,                           STRING
+facenumber_in_poster,
+plot_keywords,                          STRING
+movie_imdb_link,                        STRING
+num_user_for_reviews,
+language,                               STRING
+country,                                STRING
+content_rating,                         STRING
+budget,                                 
+title_year,
+actor_2_facebook_likes,
+imdb_score,
+aspect_ratio,
+movie_facebook_likes

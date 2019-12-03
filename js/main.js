@@ -3,41 +3,80 @@ var height= 500;
 
 d3.csv("./data/movies.csv", function(csv) {
     for (var i=0; i<csv.length; ++i) {
-        csv[i].duration = Number(csv[i].duration);
-        console.log(csv[i]);
-		//csv[i].GPA = Number(csv[i].GPA);
-		//csv[i].SATM = Number(csv[i].SATM);
-		//csv[i].SATV = Number(csv[i].SATV);
-        //csv[i].ACT = Number(csv[i].ACT);
+		// Numbers
+			//general movie metrics
+			csv[i].duration = Number(csv[i].duration);
+			csv[i].gross = Number(csv[i].gross);
+			csv[i].budget = Number(csv[i].budget);
+			csv[i].title_year = Number(csv[i].title_year);
+			csv[i].imdb_score = Number(csv[i].imdb_score);
+			csv[i].aspect_ratio = Number(csv[i].aspect_ratio);
 
-    }
-    var satmExtent = d3.extent(csv, function(row) { return row.SATM; });
-    var satvExtent = d3.extent(csv, function(row) { return row.SATV; });
-    var actExtent = d3.extent(csv,  function(row) { return row.ACT;  });
-    var gpaExtent = d3.extent(csv,  function(row) {return row.GPA;   });    
+			csv[i].num_voted_users = Number(csv[i].num_voted_users);
+			csv[i].facenumber_in_poster = Number(csv[i].facenumber_in_poster);
+			csv[i].num_user_for_reviews = Number(csv[i].num_user_for_reviews);
+			csv[i].num_critic_for_reviews = Number(csv[i].duration);
 
-    
-    var satExtents = {
-	"SATM": satmExtent,
-	"SATV": satvExtent
-	}; 
-	
-	var resultExtents = {
-	"ACT": actExtent,
-	"GPA": gpaExtent
+			//facebook likes
+			csv[i].director_facebook_likes = Number(csv[i].director_facebook_likes);
+			csv[i].actor_1_facebook_likes = Number(csv[i].actor_1_facebook_likes);
+			csv[i].actor_2_facebook_likes = Number(csv[i].actor_3_facebook_likes);
+			csv[i].actor_3_facebook_likes = Number(csv[i].actor_3_facebook_likes);
+			csv[i].cast_total_facebook_likes = Number(csv[i].cast_total_facebook_likes);
+			csv[i].movie_facebook_likes = Number(csv[i].movie_facebook_likes);
+
+		// Strings
+			csv[i].director_name = String(csv[i].director_name);
+			csv[i].actor_1_name = String(csv[i].actor_1_name);
+			csv[i].actor_2_name = String(csv[i].actor_2_name);
+			csv[i].actor_3_name = String(csv[i].actor_3_name);
+
+			csv[i].color = String(csv[i].color);
+			csv[i].genres = String(csv[i].genres);
+			csv[i].movie_title = String(csv[i].movie_title);
+			csv[i].plot_keywords = String(csv[i].plot_keywords);
+			csv[i].movie_imdb_link = String(csv[i].movie_imdb_link);
+			csv[i].language = String(csv[i].language);
+			csv[i].country = String(csv[i].country);
+			csv[i].content_rating = String(csv[i].content_rating);
+			csv[i].num_critic_for_reviews = String(csv[i].num_critic_for_reviews);
+
+
+		// console.log("Got here");
+		// console.log(csv[i].movie_imdb_link);
 	}
 
-	var satmResult = d3.select('#satm');
-	var satvResult = d3.select('#satv');
-	var actResult = d3.select('#act');
-	var gpaResult = d3.select('#gpa');
+	var director_facebook_likesExtent = d3.extent(csv, function(row) {return row.director_facebook_likes});
+	var actor_1_facebook_likesExtent = d3.extent(csv, function(row) {return row.actor_1_facebook_likes});
+	var actor_2_facebook_likesExtent = d3.extent(csv, function(row) {return row.actor_2_facebook_likes});
+	var actor_3_facebook_likesExtent = d3.extent(csv, function(row) {return row.actor_3_facebook_likes});
+	
+	var director_name = d3.extent(csv, function(row) {return row.director_name});
+	var actor_1_name = d3.extent(csv, function(row) {return row.actor_1_name});
+	var actor_2_name = d3.extent(csv, function(row) {return row.actor_2_name});
+	var actor_3_name = d3.extent(csv, function(row) {return row.actor_3_name});
+
+	var durationExtent = d3.extent(csv, function(row) {return row.duration});
+	var grossExtent = d3.extent(csv, function(row) {return row.gross});
+	var budgetExtent = d3.extent(csv, function(row) {return row.budget});
+	var title_yearExtent = d3.extent(csv, function(row) {return row.title_year});
+	var imdb_scoreExtent = d3.extent(csv, function(row) {return row.imdb_score});
+	var aspect_ratioExtent = d3.extent(csv, function(row) {return row.aspect_ratio});
+	var num_voted_usersExtent = d3.extent(csv, function(row) {return row.num_voted_users});
+	var facenumber_in_posterExtent = d3.extent(csv, function(row) {return row.facenumber_in_poster});
+	var num_user_for_reviewsExtent = d3.extent(csv, function(row) {return row.num_user_for_reviews});
+	var num_critic_for_reviewsExtent = d3.extent(csv, function(row) {return row.num_critic_for_reviews});
+	
+	
+
+
 
     // Axis setup
-    var xScale = d3.scaleLinear().domain(satmExtent).range([50, 470]);
-    var yScale = d3.scaleLinear().domain(satvExtent).range([470, 30]);
+    var xScale = d3.scaleLinear().domain(director_facebook_likesExtent).range([50, 470]);
+    var yScale = d3.scaleLinear().domain(actor_1_facebook_likesExtent).range([470, 30]);
  
-    var xScale2 = d3.scaleLinear().domain(actExtent).range([50, 470]);
-    var yScale2 = d3.scaleLinear().domain(gpaExtent).range([470, 30]);
+    var xScale2 = d3.scaleLinear().domain(actor_2_facebook_likesExtent).range([50, 470]);
+    var yScale2 = d3.scaleLinear().domain(actor_3_facebook_likesExtent).range([470, 30]);
      
     var xAxis = d3.axisBottom().scale(xScale);
     var yAxis = d3.axisLeft().scale(yScale);
@@ -200,8 +239,8 @@ d3.csv("./data/movies.csv", function(csv) {
 	   .append("circle")
 	   .attr("id",function(d,i) {return i;} )
 	   .attr("stroke", "black")
-	   .attr("cx", function(d) { return xScale(d.SATM); })
-	   .attr("cy", function(d) { return yScale(d.SATV); })
+	   .attr("cx", function(d) { return xScale(d.director_facebook_likes); })
+	   .attr("cy", function(d) { return yScale(d.actor_1_facebook_likes); })
 	   .attr("r", 5)
 	   .on("click", function(d,i){ 
 			d3.selectAll("circle")
@@ -231,8 +270,8 @@ d3.csv("./data/movies.csv", function(csv) {
 	   .append("circle")
 	   .attr("id",function(d,i) {return i;} )
 	   .attr("stroke", "black")
-	   .attr("cx", function(d) { return xScale2(d.ACT); })
-	   .attr("cy", function(d) { return yScale2(d.GPA); })
+	   .attr("cx", function(d) { return xScale2(d.actor_2_facebook_likes); })
+	   .attr("cy", function(d) { return yScale2(d.actor_3_facebook_likes); })
 	   .attr("r", 5)
 	   .on("click", function(d,i){ 
 			d3.selectAll("circle")
