@@ -169,6 +169,12 @@ d3.csv("./data/movies.csv", function(csv) {
     .text("Reset Filter")
     .on('click', function() {
         d3.selectAll("circle").style("opacity", 1);
+        d3.select("#color").node().value = "All";
+        d3.select("#contentRating").node().value = "All";
+        d3.select("#language").node().value = "All";
+        d3.select("#genre").node().value = "All";
+        document.getElementById("grossCutoff").value = "";
+        document.getElementById("titleYear").value = "";
     });
 
 
