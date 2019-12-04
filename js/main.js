@@ -92,7 +92,12 @@ d3.csv("./data/movies.csv", function(csv) {
 	var yScale3 = d3.scaleLinear().domain(director_facebook_likesExtent).range([470, 30]);
      
     var xAxis = d3.axisBottom().scale(xScale).ticks(7);
-    var yAxis = d3.axisLeft().scale(yScale);
+    var yAxis = d3.axisLeft().scale(yScale).tickFormat(function(d){
+        if (d === 0) {
+            return d;
+        } else {        
+            return d/1000000 + " M"}
+    });
   
     var xAxis2 = d3.axisBottom().scale(xScale2).ticks(7);
 	var yAxis2 = d3.axisLeft().scale(yScale2);
