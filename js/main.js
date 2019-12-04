@@ -148,10 +148,11 @@ d3.csv("./data/movies.csv", function(csv) {
 
 
         var test = d3.selectAll("circle").filter(function(d,i) {
+            var hasGenre = d.genres.includes(genre);
             var filterCriteria = ((d.color == colorSelected || colorSelected == "All") 
                 && (d.content_rating == contentRatingSelected || contentRatingSelected == "All")
                 && (d.language == language || language == "All") && (d.gross >= grossCutoff || grossCutoff == "")
-                && (d.title_year === titleYear || titleYear == ""));
+                && (d.title_year === titleYear || titleYear == "") && (hasGenre || genre == "All"));
 
             if(!filterCriteria) {
                 return d;
