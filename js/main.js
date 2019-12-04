@@ -137,7 +137,19 @@ d3.csv("./data/movies.csv", function(csv) {
         var titleYear = Number(document.getElementById("titleYear").value);
 
 
-        d3.selectAll("circle").style("opacity", 1);
+        var visible = d3.selectAll("circle").filter(function(d,i) {
+            var hasGenre = d.genres.includes(genre);
+            var filterCriteria = ((d.color == colorSelected || colorSelected == "All") 
+                && (d.content_rating == contentRatingSelected || contentRatingSelected == "All")
+                && (d.language == language || language == "All") && (d.gross >= grossCutoff || grossCutoff == "")
+                && (d.title_year === titleYear || titleYear == "") && (hasGenre || genre == "All"));
+
+            if(filterCriteria) {
+                return d;
+            }
+        });
+        visible.transition().duration(function(d) {
+            return Math.floor(Math.random() * 1500 + 50)}).style("opacity", 1);
 
         //console.log(colorSelected);
         //console.log(grossCutoff);
@@ -147,7 +159,7 @@ d3.csv("./data/movies.csv", function(csv) {
         //console.log(titleYear);
 
 
-        var test = d3.selectAll("circle").filter(function(d,i) {
+        var hidden = d3.selectAll("circle").filter(function(d,i) {
             var hasGenre = d.genres.includes(genre);
             var filterCriteria = ((d.color == colorSelected || colorSelected == "All") 
                 && (d.content_rating == contentRatingSelected || contentRatingSelected == "All")
@@ -158,7 +170,7 @@ d3.csv("./data/movies.csv", function(csv) {
                 return d;
             }
         });
-        test.transition().duration(function(d) {
+        hidden.transition().duration(function(d) {
                                     return Math.floor(Math.random() * 1500 + 50)}).style("opacity", 0);
     });
 
