@@ -63,12 +63,21 @@ d3.csv("./data/movies.csv", function(csv) {
 	var num_critic_for_reviewsExtent = d3.extent(csv, function(row) {return row.num_critic_for_reviews});
 	//Filters
 	var movieResult = d3.select('#movieName');
-	var aspectResult = d3.select('#asptectRation');
+	var aspectResult = d3.select('#aspectRatio');
 	var imdbLinkResult = d3.select('#imdbLink');
 	var directorResult = d3.select('#directorName');
 	var actor1Result = d3.select('#actor1Name');
 	var actor2Result = d3.select('#actor2Name');
 	var actor3Result = d3.select('#actor3Name');
+
+	var userReviewResult = d3.select('#userReviews');
+	var criticReviewResult = d3.select('#criticReviews');
+	var grossResult = d3.select('#gross');
+	var imdbScoreResult = d3.select('#imdbScore');
+	var movieFLikesResult = d3.select('#movieFLikes');
+	var budgetResult = d3.select('#budget');
+	var directorFLikesResult = d3.select('#directorFLikes');
+	var durationResult = d3.select('#duration');
 
 
 	// Graph 1
@@ -97,9 +106,6 @@ d3.csv("./data/movies.csv", function(csv) {
 	
 	var xScale3 = d3.scaleLinear().domain(durationExtent).range([50, 470]);
 	var yScale3 = d3.scaleLinear().domain(director_facebook_likesExtent).range([470, 30]);
-
-	var xScale4 = d3.scaleLinear().domain(num_critic_for_reviewsExtent).range([50, 470]);
-	var yScale4 = d3.scaleLinear().domain(num_user_for_reviewsExtent).range([470, 30]);
      
     var xAxis = d3.axisBottom().scale(xScale).ticks(7);
     var yAxis = d3.axisLeft().scale(yScale).tickFormat(function(d){
@@ -113,11 +119,8 @@ d3.csv("./data/movies.csv", function(csv) {
 	var yAxis2 = d3.axisLeft().scale(yScale2);
 	
 	var xAxis3 = d3.axisBottom().scale(xScale3);
-    var yAxis3 = d3.axisLeft().scale(yScale3);
-
-	var xAxis4 = d3.axisBottom().scale(xScale4);
-    var yAxis4 = d3.axisLeft().scale(yScale4);
-
+	var yAxis3 = d3.axisLeft().scale(yScale3);
+	
     //Create SVGs for charts
     var chart1 = d3.select("#chart1")
 	                .append("svg:svg")
@@ -133,12 +136,6 @@ d3.csv("./data/movies.csv", function(csv) {
 	                .append("svg:svg")
 	                .attr("width",width)
 					.attr("height",height);
-
-	// var chart4 = d3.select("#chart4")
-	//                 .append("svg:svg")
-	//                 .attr("width",width)
-	//                 .attr("height",height);
-
 
 	d3.select(document.getElementById("Filters"))
     .append("p")
@@ -229,7 +226,22 @@ d3.csv("./data/movies.csv", function(csv) {
 		.attr('class', 'brush')
 		.call(brush)
 		.on("click", function(d,i) {
-		    movieResult.text("");
+			movieResult.text("");
+			aspectResult.text("");
+			imdbLinkResult.text("");
+			directorResult.text("");
+			actor1Result.text("");
+			actor2Result.text("");
+			actor3Result.text("");
+			userReviewResult.text("");
+			criticReviewResult.text("");
+			grossResult.text("");
+			imdbScoreResult.text("");
+			movieFLikesResult.text("");
+			budgetResult.text("");
+			directorFLikesResult.text("");
+			durationResult.text("");
+
 		    var circles = d3.selectAll("circle");
 		    circles.classed("selected", false);
 		    circles.classed("selected2", false);
@@ -322,15 +334,26 @@ d3.csv("./data/movies.csv", function(csv) {
 			.attr('class', 'brush2')
 			.call(brush2)
 			.on("click", function(d,i) {
-			    movieResult.text("");
+				movieResult.text("");
+				aspectResult.text("");
+				imdbLinkResult.text("");
+				directorResult.text("");
+				actor1Result.text("");
+				actor2Result.text("");
+				actor3Result.text("");
+				userReviewResult.text("");
+				criticReviewResult.text("");
+				grossResult.text("");
+				imdbScoreResult.text("");
+				movieFLikesResult.text("");
+				budgetResult.text("");
+				directorFLikesResult.text("");
+				durationResult.text("");
+
 			    var circles = d3.selectAll("circle");
 			    circles.classed("selected", false);
 			    circles.classed("selected2", false);
 			    circles.classed*("selected3", false);
-				// satmResult.text("");
-				// satvResult.text("");
-				// actResult.text("");
-				// gpaResult.text("");
 			});   
 
 	// Clear the previously-active brush, if any.
@@ -405,15 +428,27 @@ d3.csv("./data/movies.csv", function(csv) {
 			.attr('class', 'brush3')
 			.call(brush3)
 			.on("click", function(d,i) {
-			    movieResult.text("");
+				movieResult.text("");
+				aspectResult.text("");
+				imdbLinkResult.text("");
+				directorResult.text("");
+				actor1Result.text("");
+				actor2Result.text("");
+				actor3Result.text("");
+				userReviewResult.text("");
+				criticReviewResult.text("");
+				grossResult.text("");
+				imdbScoreResult.text("");
+				movieFLikesResult.text("");
+				budgetResult.text("");
+				directorFLikesResult.text("");
+				durationResult.text("");
+
+
 			    var circles = d3.selectAll("circle");
 			    circles.classed("selected", false);
 			    circles.classed("selected2", false);
 			    circles.classed*("selected3", false);
-				// satmResult.text("");
-				// satvResult.text("");
-				// actResult.text("");
-				// gpaResult.text("");
 			});   
 
 	// Clear the previously-active brush, if any.
@@ -516,6 +551,14 @@ d3.csv("./data/movies.csv", function(csv) {
 			actor1Result.text(d.actor_1_name);
 			actor2Result.text(d.actor_2_name);
 			actor3Result.text(d.actor_3_name);
+			userReviewResult.text(d.num_user_for_reviews);
+			criticReviewResult.text(d.num_critic_for_reviews);
+			grossResult.text(d.gross);
+			imdbScoreResult.text(d.imdb_score);
+			movieFLikesResult.text(d.movie_facebook_likes);
+			budgetResult.text(d.budget);
+			directorFLikesResult.text(d.director_facebook_likes);
+			durationResult.text(d.duration);
 
        });
 
@@ -547,13 +590,21 @@ d3.csv("./data/movies.csv", function(csv) {
 	       var chart3Circle = chart3.selectAll("circle").filter(function(d,i) {
 	           return i == index}).classed("selected3", true);
 
-			movieResult.text(d.movie_title);
-			aspectResult.text(d.aspect_ratio);
-			imdbLinkResult.text(d.movie_imdb_link);
-			directorResult.text(d.director_name);
-			actor1Result.text(d.actor_1_name);
-			actor2Result.text(d.actor_2_name);
-			actor3Result.text(d.actor_3_name);
+			   movieResult.text(d.movie_title);
+			   aspectResult.text(d.aspect_ratio);
+			   imdbLinkResult.text(d.movie_imdb_link);
+			   directorResult.text(d.director_name);
+			   actor1Result.text(d.actor_1_name);
+			   actor2Result.text(d.actor_2_name);
+			   actor3Result.text(d.actor_3_name);
+			   userReviewResult.text(d.num_user_for_reviews);
+			   criticReviewResult.text(d.num_critic_for_reviews);
+			   grossResult.text(d.gross);
+			   imdbScoreResult.text(d.imdb_score);
+			   movieFLikesResult.text(d.movie_facebook_likes);
+			   budgetResult.text(d.budget);
+			   directorFLikesResult.text(d.director_facebook_likes);
+			   durationResult.text(d.duration);
 
        });
 	
@@ -585,7 +636,7 @@ d3.csv("./data/movies.csv", function(csv) {
 
 	       var chart3Circle = chart3.selectAll("circle").filter(function(d,i) {
 	           return i == index}).classed("selected3", true);
-			
+		
 			movieResult.text(d.movie_title);
 			aspectResult.text(d.aspect_ratio);
 			imdbLinkResult.text(d.movie_imdb_link);
@@ -593,6 +644,14 @@ d3.csv("./data/movies.csv", function(csv) {
 			actor1Result.text(d.actor_1_name);
 			actor2Result.text(d.actor_2_name);
 			actor3Result.text(d.actor_3_name);
+			userReviewResult.text(d.num_user_for_reviews);
+			criticReviewResult.text(d.num_critic_for_reviews);
+			grossResult.text(d.gross);
+			imdbScoreResult.text(d.imdb_score);
+			movieFLikesResult.text(d.movie_facebook_likes);
+			budgetResult.text(d.budget);
+			directorFLikesResult.text(d.director_facebook_likes);
+			durationResult.text(d.duration);
 
        });
 

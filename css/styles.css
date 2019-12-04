@@ -45,12 +45,14 @@ path.domain {
   margin-left: 20px;
   margin-bottom: 40px;
 }
-#chart4 {
-	float: left;    
-	left: 100px;
-}
+
 .brush .extent {
 	fill-opacity: .1;
 	stroke: #fff;
 	shape-rendering: crispEdges;
+}
+#details {
+	float: left;
+	margin-left: 300px;
+	margin-top: -200px;
 }
