@@ -132,6 +132,7 @@ d3.csv("./data/movies.csv", function(csv) {
 
 	var isChart1 = false;
 	var isChart2 = false;
+	var isChart3 = false;
 
 	var brush = d3.brush()
 		.extent([[0, 0], [width, height]])
@@ -143,10 +144,10 @@ d3.csv("./data/movies.csv", function(csv) {
 		.attr('class', 'brush')
 		.call(brush)
 		.on("click", function(d,i) {
-			satmResult.text("");
-			satvResult.text("");
-			actResult.text("");
-			gpaResult.text("");
+			// satmResult.text("");
+			// satvResult.text("");
+			// actResult.text("");
+			// gpaResult.text("");
 		});
 
 	
@@ -155,14 +156,16 @@ d3.csv("./data/movies.csv", function(csv) {
 		// chart1.selectAll("circle").classed('selected2', false);
 		// chart2.selectAll("circle").classed('selected', false);
 		// brush.move(d3.selectAll('.brush'), null); 
-		satmResult.text("");
-		satvResult.text("");
-		actResult.text("");
-		gpaResult.text("");
+
+		console.log(isChart1);
+		console.log(isChart2);
+		console.log(isChart3);
 		if (!isChart1) {
 			brushCell2.call(brush2.move, null);
+			brushCell3.call(brush3.move, null);
 			isChart1 = true;
 			isChart2 = false;
+			isChart3 = false;
 		}
 	}
 
@@ -181,8 +184,8 @@ d3.csv("./data/movies.csv", function(csv) {
 			chart2.selectAll("circle")
 				.classed('selected2', function(d) {
 					// console.log("Got here");
-					var x = xScale([d["SATM"]]);
-					var y = yScale(d["SATV"]);
+					// var x = xScale([d["SATM"]]);
+					// var y = yScale(d["SATV"]);
 					// Hide the dots that are outside of the selected area
 					return (left <= x && x <= right && top <= y && y <= bottom);
 			});
@@ -198,6 +201,7 @@ d3.csv("./data/movies.csv", function(csv) {
 				.classed('selected2', false);
 				chart1.selectAll("circle")
 				.classed('selected', false);
+			isChart3 = false;
 			isChart2 = false;
 			isChart1 = false;
 	}
@@ -215,23 +219,25 @@ d3.csv("./data/movies.csv", function(csv) {
 			.attr('class', 'brush2')
 			.call(brush2)
 			.on("click", function(d,i) {
-				satmResult.text("");
-				satvResult.text("");
-				actResult.text("");
-				gpaResult.text("");
+				// satmResult.text("");
+				// satvResult.text("");
+				// actResult.text("");
+				// gpaResult.text("");
 			});   
 
 	// Clear the previously-active brush, if any.
 	function handleBrushStart2() {		
-		satmResult.text("");
-		satvResult.text("");
-		actResult.text("");
-		gpaResult.text("");
+
+		console.log(isChart1);
+		console.log(isChart2);
+		console.log(isChart3);
 
 		if (!isChart2) {
 			brushCell1.call(brush.move, null);
+			brushCell3.call(brush3.move, null);
 			isChart2 = true;
 			isChart1 = false;
+			isChart3 = false;
 		}
 	}
 	
@@ -258,6 +264,60 @@ d3.csv("./data/movies.csv", function(csv) {
 
 
 	/////////////////////////////////////////////////////////////////////////////////
+	var brush3 = d3.brush()
+		.extent([[0, 0], [width, height]])
+		.on("start", handleBrushStart3)
+		.on("brush", handleBrushMove3)
+		.on("end", handleBrushEnd);
+	
+
+	var brushCell3 = chart3.append('g')
+			.attr('class', 'brush2')
+			.call(brush3)
+			.on("click", function(d,i) {
+				// satmResult.text("");
+				// satvResult.text("");
+				// actResult.text("");
+				// gpaResult.text("");
+			});   
+
+	// Clear the previously-active brush, if any.
+	function handleBrushStart3() {		
+		// satmResult.text("");
+		// satvResult.text("");
+		// actResult.text("");
+		// gpaResult.text("");
+
+		if (!isChart3) {
+			brushCell1.call(brush.move, null);
+			brushCell2.call(brush2.move, null);
+			isChart3 = true;
+			isChart2 = false;
+			isChart1 = false;
+		}
+	}
+	
+
+	// Highlight the selected circles.
+	function handleBrushMove3() {
+		// console.log("brushing now");
+		var selection = d3.event.selection
+		if (selection) {
+			var [[left, top], [right, bottom]] = selection;
+
+			chart3.selectAll("circle")
+				.classed('selected', function(d) {
+					// console.log("Got here2");
+					var x = xScale3(d["ACT"]);
+					var y = yScale3(d["GPA"]);
+					// Hide the dots that are outside of the selected area
+					// console.log(x);
+					// console.log(y);
+					return (left <= x && x <= right && top <= y && y <= bottom);
+			});
+		}
+	}
+	/////////////////////////////////////////////////////////////////////////////////
 
 	 //add scatterplot points
      var temp1= chart1.selectAll("circle")
@@ -283,10 +343,10 @@ d3.csv("./data/movies.csv", function(csv) {
 			console.log(circles);
 			// circles.style("fill", "orange");
 			circles.classed('selected2', true);
-			satmResult.text(d.SATM);
-			satvResult.text(d.SATV);
-			actResult.text(d.ACT);
-			gpaResult.text(d.GPA);
+			// satmResult.text(d.SATM);
+			// satvResult.text(d.SATV);
+			// actResult.text(d.ACT);
+			// gpaResult.text(d.GPA);
        });
 
     var temp2= chart2.selectAll("circle")
@@ -309,10 +369,10 @@ d3.csv("./data/movies.csv", function(csv) {
 				console.log(circles);
 			// circles.style("fill", "red");
 			circles.classed('selected', true);
-			satmResult.text(d.SATM);
-			satvResult.text(d.SATV);
-			actResult.text(d.ACT);
-			gpaResult.text(d.GPA);
+			// satmResult.text(d.SATM);
+			// satvResult.text(d.SATV);
+			// actResult.text(d.ACT);
+			// gpaResult.text(d.GPA);
        });
 	
 	   
@@ -336,10 +396,10 @@ d3.csv("./data/movies.csv", function(csv) {
 				console.log(circles);
 			// circles.style("fill", "red");
 			circles.classed('selected', true);
-			satmResult.text(d.SATM);
-			satvResult.text(d.SATV);
-			actResult.text(d.ACT);
-			gpaResult.text(d.GPA);
+			// satmResult.text(d.SATM);
+			// satvResult.text(d.SATV);
+			// actResult.text(d.ACT);
+			// gpaResult.text(d.GPA);
        });
 
  //////////////////////////////////////////////////////////////////////////////////////////////
