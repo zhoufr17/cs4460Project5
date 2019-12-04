@@ -158,7 +158,8 @@ d3.csv("./data/movies.csv", function(csv) {
                 return d;
             }
         });
-        test.style("opacity", 0);
+        test.transition().duration(function(d) {
+                                    return Math.floor(Math.random() * 1500 + 50)}).style("opacity", 0);
     });
 
 
@@ -168,7 +169,8 @@ d3.csv("./data/movies.csv", function(csv) {
     .style("border", "1px solid black")
     .text("Reset Filter")
     .on('click', function() {
-        d3.selectAll("circle").style("opacity", 1);
+        d3.selectAll("circle").transition().duration(function(d) {
+            return Math.floor(Math.random() * 1500 + 50)}).style("opacity", 1);
         d3.select("#color").node().value = "All";
         d3.select("#contentRating").node().value = "All";
         d3.select("#language").node().value = "All";
