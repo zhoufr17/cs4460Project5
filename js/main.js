@@ -149,14 +149,14 @@ d3.csv("./data/movies.csv", function(csv) {
         var test = d3.selectAll("circle").filter(function(d,i) {
             var filterCriteria = ((d.color == colorSelected || colorSelected == "All") 
                 && (d.content_rating == contentRatingSelected || contentRatingSelected == "All")
-                && (d.language == language || language == "All") && d.gross >= grossCutoff && d.title_year === titleYear);
+                && (d.language == language || language == "All") && (d.gross >= grossCutoff || grossCutoff == "")
+                && (d.title_year === titleYear || titleYear == ""));
 
             if(!filterCriteria) {
                 return d;
             }
         });
         test.style("opacity", 0);
-        console.log(test);
     });
 
 
