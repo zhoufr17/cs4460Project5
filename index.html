@@ -18,6 +18,81 @@
             <strong>ACT Score:</strong> <span id="act"></span><br/>
             <strong>GPA:</strong> <span id="gpa"></span><br/> 
         </div>
+        <div id="Filters">
+            Color: <select id="color">
+                <option value="All">All</option>
+                <option value="Color">Color</option>
+                <option value="Black and White">Black and White</option>
+            </select>
+            <br>
+            Content Rating: <select id="contentRating">
+                <option value="All">All</option>
+                <option value="Not Rated">Not Rated</option>
+                <option value="Unrated">Unrated</option>
+                <option value="G">G</option>
+                <option value="PG">PG</option>
+                <option value="PG-13">PG-13</option>
+                <option value="R">R</option>
+            </select>
+            <br>
+            Language: <select id="language">
+                <option value="All">All</option>
+                <option value="English">English</option>
+                <option value="German">German</option>
+                <option value="Mandarin">Mandarin</option>
+                <option value="Chinese">Chinese</option>
+                <option value="Persian">Persian</option>
+                <option value="French">French</option>
+                <option value="Hindi">Hindi</option>
+                <option value="Spanish">Spanish</option>
+                <option value="Kannada">Kannada</option>
+                <option value="Russian">Russian</option>
+                <option value="Hewbrew">Hewbrew</option>
+                <option value="Polish">Polish</option>
+                <option value="Swedish">Swedish</option>
+                <option value="Portuguese">Portuguese</option>
+                <option value="Japanese">Japanese</option>
+                <option value="Italian">Italian</option>
+                <option value="Norwegian">Norwegian</option>
+                <option value="Bosnian">Bosnian</option>
+                <option value="Cantonese">Cantonese</option>
+                <option value="Slovenian">Slovenian</option>
+                <option value="Urdu">Urdu</option>
+                <option value="Icelandic">Icelandic</option>
+                <option value="Indonesian">Indonesian</option>
+                <option value="Romanian">Romanian</option>
+            </select>
+            <br>
+            Genres: <select id="genre">
+                <option value="All">All</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Drama">Drama</option>
+                <option value="Romance">Romance</option>
+                <option value="Biography">Biography</option>
+                <option value="Sport">Sport</option>
+                <option value="Action">Action</option>
+                <option value="Adventure">Adventure</option>
+                <option value="History">History</option>
+                <option value="War">War</option>
+                <option value="Mystery">Mystery</option>
+                <option value="Sci-Fi">Sci-Fi</option>
+                <option value="Thriller">Thriller</option>
+                <option value="Music">Music</option>
+                <option value="Documentary">Documentary</option>
+                <option value="Crime">Crime</option>
+                <option value="Family">Family</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="Western">Western</option>
+                <option value="Animation">Animation</option>
+                <option value="Musical">Musical</option>
+                <option value="Anime">Anime</option>
+            </select>
+            <br>
+            Minimum Gross: <input type="number" id="grossCutoff" />
+            <br>
+            Movies in: <input type="number" id="titleYearCutoff" />
+            <br>
+        </div>
        </div>
 </body>
 <script src="https://d3js.org/d3.v4.min.js"></script>
