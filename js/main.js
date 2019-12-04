@@ -26,20 +26,20 @@ d3.csv("./data/movies.csv", function(csv) {
 			csv[i].movie_facebook_likes = Number(csv[i].movie_facebook_likes);
 
 		// Strings
-			csv[i].director_name = String(csv[i].director_name);
-			csv[i].actor_1_name = String(csv[i].actor_1_name);
-			csv[i].actor_2_name = String(csv[i].actor_2_name);
-			csv[i].actor_3_name = String(csv[i].actor_3_name);
+			csv[i].director_name = String(csv[i].director_name).trim();
+			csv[i].actor_1_name = String(csv[i].actor_1_name).trim();
+			csv[i].actor_2_name = String(csv[i].actor_2_name).trim();
+			csv[i].actor_3_name = String(csv[i].actor_3_name).trim();
 
-			csv[i].color = String(csv[i].color);
-			csv[i].genres = String(csv[i].genres);
-			csv[i].movie_title = String(csv[i].movie_title);
-			csv[i].plot_keywords = String(csv[i].plot_keywords);
-			csv[i].movie_imdb_link = String(csv[i].movie_imdb_link);
-			csv[i].language = String(csv[i].language);
-			csv[i].country = String(csv[i].country);
-			csv[i].content_rating = String(csv[i].content_rating);
-			csv[i].num_critic_for_reviews = String(csv[i].num_critic_for_reviews);
+			csv[i].color = String(csv[i].color).trim();
+			csv[i].genres = String(csv[i].genres).trim();
+			csv[i].movie_title = String(csv[i].movie_title).trim();
+			csv[i].plot_keywords = String(csv[i].plot_keywords).trim();
+			csv[i].movie_imdb_link = String(csv[i].movie_imdb_link).trim();
+			csv[i].language = String(csv[i].language).trim();
+			csv[i].country = String(csv[i].country).trim();
+			csv[i].content_rating = String(csv[i].content_rating).trim();
+			csv[i].num_critic_for_reviews = String(csv[i].num_critic_for_reviews).trim();
 
 
 		// console.log("Got here");
@@ -139,6 +139,7 @@ d3.csv("./data/movies.csv", function(csv) {
 
         d3.selectAll("circle").style("opacity", 1);
 
+        //console.log(colorSelected);
         //console.log(grossCutoff);
         //console.log(contentRatingSelected);
         //console.log(language);
