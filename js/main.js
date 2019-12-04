@@ -267,7 +267,7 @@ d3.csv("./data/movies.csv", function(csv) {
 	   .attr("stroke", "black")
 	   .attr("cx", function(d) { return xScale(d.imdb_score); })
 	   .attr("cy", function(d) { return yScale(d.gross); })
-	   .attr("r", 5)
+	   .attr("r", 2)
 	   .on("click", function(d,i){ 
 			d3.selectAll("circle")
 				.classed("selected2", false);
@@ -296,7 +296,7 @@ d3.csv("./data/movies.csv", function(csv) {
 	   .attr("stroke", "black")
 	   .attr("cx", function(d) { return xScale2(d.budget); })
 	   .attr("cy", function(d) { return yScale2(d.movie_facebook_likes); })
-	   .attr("r", 5)
+	   .attr("r", 2)
 	   .on("click", function(d,i){ 
 			d3.selectAll("circle")
 				.classed('selected', false);
