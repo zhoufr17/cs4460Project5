@@ -1,13 +1,13 @@
-color,                                  STRING
+color,                                  STRING <-------
 director_name,                          STRING
 num_critic_for_reviews,
-duration,
-director_facebook_likes,
+duration,                                      <-------
+director_facebook_likes,                       <-------
 actor_3_facebook_likes,
 actor_2_name,                           STRING
 actor_1_facebook_likes,
 gross,
-genres,                                 STRING
+genres,                                 STRING <-------
 actor_1_name,                           STRING
 movie_title,                            STRING
 num_voted_users,
@@ -17,15 +17,15 @@ facenumber_in_poster,
 plot_keywords,                          STRING
 movie_imdb_link,                        STRING
 num_user_for_reviews,
-language,                               STRING
-country,                                STRING
-content_rating,                         STRING
-budget,                                 
-title_year,
+language,                               STRING <-------
+country,                                STRING <-------
+content_rating,                         STRING <-------
+budget,                                        <-------
+title_year,                                    <-------
 actor_2_facebook_likes,
-imdb_score,
+imdb_score,                                    <-------
 aspect_ratio,
-movie_facebook_likes
+movie_facebook_likes                           <-------
 
 
 /////////////////////////////////////////////////////////
@@ -37,6 +37,12 @@ country
 language
 content_rating
 title_year
+
+## Details
+Movie name 
+Director name
+Imdb link 
+Aspect Ratio 
 
 
 ## Graph 1

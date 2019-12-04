@@ -20,6 +20,10 @@ body {
   stroke: salmon;
   fill: salmon;
 }
+.selected3 {
+	stroke: purple
+	fill: purple;
+  }
 path.domain {
 	fill: none;
 	stroke-width: 2px;
@@ -40,6 +44,10 @@ path.domain {
 	margin-top: 30px;
   margin-left: 20px;
   margin-bottom: 40px;
+}
+#chart4 {
+	float: left;    
+	left: 100px;
 }
 .brush .extent {
 	fill-opacity: .1;
