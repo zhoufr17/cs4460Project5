@@ -16,6 +16,10 @@ body {
 	stroke: orange;
 	fill:orange;
 }
+.selected3 {
+  stroke: salmon;
+  fill: salmon;
+}
 path.domain {
 	fill: none;
 	stroke-width: 2px;

@@ -157,9 +157,7 @@ d3.csv("./data/movies.csv", function(csv) {
 		// chart2.selectAll("circle").classed('selected', false);
 		// brush.move(d3.selectAll('.brush'), null); 
 
-		console.log(isChart1);
-		console.log(isChart2);
-		console.log(isChart3);
+
 		if (!isChart1) {
 			brushCell2.call(brush2.move, null);
 			brushCell3.call(brush3.move, null);
@@ -178,17 +176,30 @@ d3.csv("./data/movies.csv", function(csv) {
 		// If the selection is non-empty, get the boundaries of the rectangle
 		if (selection) {
 			var [[left, top], [right, bottom]] = selection;
-			// console.log(left);
-			// console.log(bottom);
+			//  console.log("Right: " + right);
+			//  console.log("Bottom: " + bottom);
 			
-			chart2.selectAll("circle")
-				.classed('selected2', function(d) {
+			chart1.selectAll("circle")
+				.classed('selected', function(d) {
 					// console.log("Got here");
-					// var x = xScale([d["SATM"]]);
-					// var y = yScale(d["SATV"]);
+					var x = xScale(d.imdb_score);
+					var y = yScale(d.gross);
 					// Hide the dots that are outside of the selected area
 					return (left <= x && x <= right && top <= y && y <= bottom);
 			});
+
+			chart2.selectAll("circle")
+				.classed('selected2', function(d) {
+					var x = xScale(d.imdb_score);
+					var y = yScale(d.gross);
+					return (left <= x && x <= right && top <= y && y <= bottom);
+				});
+			chart3.selectAll("circle")
+				.classed('selected3', function(d) {
+					var x = xScale(d.imdb_score);
+					var y = yScale(d.gross);
+					return (left <= x && x <= right && top <= y && y <= bottom);
+				});	
 		}
 	}
 
@@ -199,8 +210,10 @@ d3.csv("./data/movies.csv", function(csv) {
 		if (d3.event.selection !== null) return;
 			chart2.selectAll("circle")
 				.classed('selected2', false);
-				chart1.selectAll("circle")
+			chart1.selectAll("circle")
 				.classed('selected', false);
+			chart3.selectAll("circle")
+				.classed('selected3', false);	
 			isChart3 = false;
 			isChart2 = false;
 			isChart1 = false;
@@ -228,9 +241,7 @@ d3.csv("./data/movies.csv", function(csv) {
 	// Clear the previously-active brush, if any.
 	function handleBrushStart2() {		
 
-		console.log(isChart1);
-		console.log(isChart2);
-		console.log(isChart3);
+
 
 		if (!isChart2) {
 			brushCell1.call(brush.move, null);
@@ -244,21 +255,45 @@ d3.csv("./data/movies.csv", function(csv) {
 
 	// Highlight the selected circles.
 	function handleBrushMove2() {
-		console.log("brushing now");
+		//console.log("brushing now");
 		var selection = d3.event.selection
 		if (selection) {
 			var [[left, top], [right, bottom]] = selection;
 
-			chart1.selectAll("circle")
-				.classed('selected', function(d) {
+			chart2.selectAll("circle")
+				.classed('selected2', function(d) {
 					// console.log("Got here2");
-					var x = xScale2(d["ACT"]);
-					var y = yScale2(d["GPA"]);
+					var x = xScale2(d.budget);
+					var y = yScale2(d.movie_facebook_likes);
 					// Hide the dots that are outside of the selected area
 					// console.log(x);
 					// console.log(y);
 					return (left <= x && x <= right && top <= y && y <= bottom);
 			});
+
+			chart1.selectAll("circle")
+				.classed('selected', function(d) {
+					// console.log("Got here2");
+					var x = xScale2(d.budget);
+					var y = yScale2(d.movie_facebook_likes);
+					// Hide the dots that are outside of the selected area
+					// console.log(x);
+					// console.log(y);
+					return (left <= x && x <= right && top <= y && y <= bottom);
+			});
+
+			chart3.selectAll("circle")
+				.classed('selected3', function(d) {
+					// console.log("Got here2");
+					var x = xScale2(d.budget);
+					var y = yScale2(d.movie_facebook_likes);
+					// Hide the dots that are outside of the selected area
+					// console.log(x);
+					// console.log(y);
+					return (left <= x && x <= right && top <= y && y <= bottom);
+			});
+
+		
 		}
 	}
 
@@ -306,10 +341,32 @@ d3.csv("./data/movies.csv", function(csv) {
 			var [[left, top], [right, bottom]] = selection;
 
 			chart3.selectAll("circle")
+				.classed('selected3', function(d) {
+					// console.log("Got here2");
+					var x = xScale3(d.duration);
+					var y = yScale3(d.director_facebook_likes);
+					// Hide the dots that are outside of the selected area
+					// console.log(x);
+					// console.log(y);
+					return (left <= x && x <= right && top <= y && y <= bottom);
+			});
+
+			chart1.selectAll("circle")
 				.classed('selected', function(d) {
 					// console.log("Got here2");
-					var x = xScale3(d["ACT"]);
-					var y = yScale3(d["GPA"]);
+					var x = xScale3(d.duration);
+					var y = yScale3(d.director_facebook_likes);
+					// Hide the dots that are outside of the selected area
+					// console.log(x);
+					// console.log(y);
+					return (left <= x && x <= right && top <= y && y <= bottom);
+			});
+
+			chart2.selectAll("circle")
+				.classed('selected2', function(d) {
+					// console.log("Got here2");
+					var x = xScale3(d.duration);
+					var y = yScale3(d.director_facebook_likes);
 					// Hide the dots that are outside of the selected area
 					// console.log(x);
 					// console.log(y);
@@ -340,7 +397,7 @@ d3.csv("./data/movies.csv", function(csv) {
 					return i == index;
 				});
 
-			console.log(circles);
+			//console.log(circles);
 			// circles.style("fill", "orange");
 			circles.classed('selected2', true);
 			// satmResult.text(d.SATM);
@@ -366,7 +423,7 @@ d3.csv("./data/movies.csv", function(csv) {
 					.filter(function(d,i) {
 					return i == index;
 				});
-				console.log(circles);
+				//console.log(circles);
 			// circles.style("fill", "red");
 			circles.classed('selected', true);
 			// satmResult.text(d.SATM);
@@ -393,9 +450,9 @@ d3.csv("./data/movies.csv", function(csv) {
 					.filter(function(d,i) {
 					return i == index;
 				});
-				console.log(circles);
+				//console.log(circles);
 			// circles.style("fill", "red");
-			circles.classed('selected', true);
+			circles.classed('selected3', true);
 			// satmResult.text(d.SATM);
 			// satvResult.text(d.SATV);
 			// actResult.text(d.ACT);
