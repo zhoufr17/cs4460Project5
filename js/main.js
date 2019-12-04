@@ -62,6 +62,7 @@ d3.csv("./data/movies.csv", function(csv) {
 	var num_user_for_reviewsExtent = d3.extent(csv, function(row) {return row.num_user_for_reviews});
 	var num_critic_for_reviewsExtent = d3.extent(csv, function(row) {return row.num_critic_for_reviews});
 	//Filters
+	var movieResult = d3.select('#movieName');
 
 	// Graph 1
 	var grossExtent = d3.extent(csv, function(row) {return row.gross});
@@ -453,7 +454,7 @@ d3.csv("./data/movies.csv", function(csv) {
 	   .attr("stroke", "black")
 	   .attr("cx", function(d) { return xScale(d.imdb_score); })
 	   .attr("cy", function(d) { return yScale(d.gross); })
-	   .attr("r", 2)
+	   .attr("r", 3)
 	   .on("click", function(d,i){ 
 			d3.selectAll("circle")
 				.classed("selected2", false);
@@ -466,12 +467,13 @@ d3.csv("./data/movies.csv", function(csv) {
 				});
 
 			//console.log(circles);
-			// circles.style("fill", "orange");
+			// circles.style("fill", "orange");\
+			circles.classed('selected', true);
 			circles.classed('selected2', true);
-			// satmResult.text(d.SATM);
-			// satvResult.text(d.SATV);
-			// actResult.text(d.ACT);
-			// gpaResult.text(d.GPA);
+			circles.classed('selected3', true);
+			
+			movieResult.text(d.movie_title);
+
        });
 
     var temp2= chart2.selectAll("circle")
@@ -482,7 +484,7 @@ d3.csv("./data/movies.csv", function(csv) {
 	   .attr("stroke", "black")
 	   .attr("cx", function(d) { return xScale2(d.budget); })
 	   .attr("cy", function(d) { return yScale2(d.movie_facebook_likes); })
-	   .attr("r", 2)
+	   .attr("r", 3)
 	   .on("click", function(d,i){ 
 			d3.selectAll("circle")
 				.classed('selected', false);
@@ -494,10 +496,11 @@ d3.csv("./data/movies.csv", function(csv) {
 				//console.log(circles);
 			// circles.style("fill", "red");
 			circles.classed('selected', true);
-			// satmResult.text(d.SATM);
-			// satvResult.text(d.SATV);
-			// actResult.text(d.ACT);
-			// gpaResult.text(d.GPA);
+			circles.classed('selected2', true);
+			circles.classed('selected3', true);
+
+			movieResult.text(d.movie_title);
+
        });
 	
 	   
@@ -509,7 +512,7 @@ d3.csv("./data/movies.csv", function(csv) {
 	   .attr("stroke", "black")
 	   .attr("cx", function(d) { return xScale3(d.duration); })
 	   .attr("cy", function(d) { return yScale3(d.director_facebook_likes); })
-	   .attr("r", 2)
+	   .attr("r", 3)
 	   .on("click", function(d,i){ 
 			d3.selectAll("circle")
 				.classed('selected', false);
@@ -520,11 +523,12 @@ d3.csv("./data/movies.csv", function(csv) {
 				});
 				//console.log(circles);
 			// circles.style("fill", "red");
+			circles.classed('selected', true);
+			circles.classed('selected2', true);
 			circles.classed('selected3', true);
-			// satmResult.text(d.SATM);
-			// satvResult.text(d.SATV);
-			// actResult.text(d.ACT);
-			// gpaResult.text(d.GPA);
+			
+			movieResult.text(d.movie_title);
+
        });
 
  //////////////////////////////////////////////////////////////////////////////////////////////
