@@ -66,8 +66,8 @@ d3.csv("./data/movies.csv", function(csv) {
 
 	// Graph 1
 	var grossExtent = d3.extent(csv, function(row) {return row.gross});
-	console.log("Got here");
-	console.log(grossExtent);
+	// console.log("Got here");
+	// console.log(grossExtent);
 	var imdb_scoreExtent = d3.extent(csv, function(row) {return row.imdb_score});
 
 	// Graph 2
@@ -82,19 +82,19 @@ d3.csv("./data/movies.csv", function(csv) {
 
 
     // Axis setup
-    var xScale = d3.scaleLinear().domain(imdb_scoreExtent).range([50, 470]);
-    var yScale = d3.scaleLinear().domain(grossExtent).range([470, 30]);
+    var xScale = d3.scaleLinear().domain(imdb_scoreExtent).nice().range([50, 470]);
+    var yScale = d3.scaleLinear().domain(grossExtent).nice().range([470, 30]);
  
-    var xScale2 = d3.scaleLinear().domain(movie_facebook_likesExtent).range([50, 470]);
-	var yScale2 = d3.scaleLinear().domain(budgetExtent).range([470, 30]);
+    var xScale2 = d3.scaleLinear().domain(budgetExtent).nice().range([50, 470]);
+	var yScale2 = d3.scaleLinear().domain(movie_facebook_likesExtent).nice().range([470, 30]);
 	
 	var xScale3 = d3.scaleLinear().domain(durationExtent).range([50, 470]);
 	var yScale3 = d3.scaleLinear().domain(director_facebook_likesExtent).range([470, 30]);
      
-    var xAxis = d3.axisBottom().scale(xScale);
+    var xAxis = d3.axisBottom().scale(xScale).ticks(7);
     var yAxis = d3.axisLeft().scale(yScale);
   
-    var xAxis2 = d3.axisBottom().scale(xScale2);
+    var xAxis2 = d3.axisBottom().scale(xScale2).ticks(7);
 	var yAxis2 = d3.axisLeft().scale(yScale2);
 	
 	var xAxis3 = d3.axisBottom().scale(xScale3);
@@ -163,7 +163,7 @@ d3.csv("./data/movies.csv", function(csv) {
 
 	// Highlight the selected circles.
 	function handleBrushMove1() {
-		console.log("brushing now");
+		// console.log("brushing now");
 		var selection = d3.event.selection
 		// console.log(selection);
 		// If the selection is non-empty, get the boundaries of the rectangle
@@ -174,7 +174,7 @@ d3.csv("./data/movies.csv", function(csv) {
 			
 			chart2.selectAll("circle")
 				.classed('selected2', function(d) {
-					console.log("Got here");
+					// console.log("Got here");
 					var x = xScale([d["SATM"]]);
 					var y = yScale(d["SATV"]);
 					// Hide the dots that are outside of the selected area
@@ -186,7 +186,7 @@ d3.csv("./data/movies.csv", function(csv) {
 	
 	// If the brush is empty, select all circles.
 	function handleBrushEnd() {
-		console.log("Ending brushing");
+		// console.log("Ending brushing");
 		if (d3.event.selection !== null) return;
 			chart2.selectAll("circle")
 				.classed('selected2', false);
@@ -239,7 +239,7 @@ d3.csv("./data/movies.csv", function(csv) {
 
 			chart1.selectAll("circle")
 				.classed('selected', function(d) {
-					console.log("Got here2");
+					// console.log("Got here2");
 					var x = xScale2(d["ACT"]);
 					var y = yScale2(d["GPA"]);
 					// Hide the dots that are outside of the selected area
@@ -260,8 +260,8 @@ d3.csv("./data/movies.csv", function(csv) {
 	   .append("circle")
 	   .attr("id",function(d,i) {return i;} )
 	   .attr("stroke", "black")
-	   .attr("cx", function(d) { return xScale(d.director_facebook_likes); })
-	   .attr("cy", function(d) { return yScale(d.actor_1_facebook_likes); })
+	   .attr("cx", function(d) { return xScale(d.imdb_score); })
+	   .attr("cy", function(d) { return yScale(d.gross); })
 	   .attr("r", 5)
 	   .on("click", function(d,i){ 
 			d3.selectAll("circle")
@@ -289,8 +289,8 @@ d3.csv("./data/movies.csv", function(csv) {
 	   .append("circle")
 	   .attr("id",function(d,i) {return i;} )
 	   .attr("stroke", "black")
-	   .attr("cx", function(d) { return xScale2(d.actor_2_facebook_likes); })
-	   .attr("cy", function(d) { return yScale2(d.actor_3_facebook_likes); })
+	   .attr("cx", function(d) { return xScale2(d.budget); })
+	   .attr("cy", function(d) { return yScale2(d.movie_facebook_likes); })
 	   .attr("r", 5)
 	   .on("click", function(d,i){ 
 			d3.selectAll("circle")
@@ -321,7 +321,7 @@ d3.csv("./data/movies.csv", function(csv) {
 		.attr("x", width-16)
 		.attr("y", height - 35)
 		.style("text-anchor", "end")
-		.text("IMBD Score");
+		.text("Gross");
 
 
     chart1 // or something else that selects the SVG element in your visualizations
@@ -335,9 +335,9 @@ d3.csv("./data/movies.csv", function(csv) {
 		.attr("y", 60)
 		.attr("dy", ".71em")
 		.style("text-anchor", "end")
-		.text("Gross");
+		.text("IMDB Score");
 
-
+	// chart1.attr("transform", "translate(50,0)");
 
     chart2 // or something else that selects the SVG element in your visualizations
 		.append("g") // create a group node
@@ -350,7 +350,7 @@ d3.csv("./data/movies.csv", function(csv) {
 		.attr("x", width-16)
 		.attr("y", height - 35)
 		.style("text-anchor", "end")
-		.text("Movie Facebook Likes");
+		.text("Budget");
 
 
     chart2 // or something else that selects the SVG element in your visualizations
@@ -361,9 +361,12 @@ d3.csv("./data/movies.csv", function(csv) {
 		.append("text")
 		.attr("class", "label")
 		.attr("transform", "rotate(-90)")
-		.attr("y", 6)
+		.attr("y", 60)
 		.attr("dy", ".71em")
 		.style("text-anchor", "end")
-		.text("Budget");
+		.text("Movie Facebook Likes");
+
+	// chart2.attr("transform", "translate(50,0)");
+
 
 	});

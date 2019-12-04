@@ -1,18 +1,43 @@
-.bar {
-  fill: steelblue;
+body {
+  font: 12px sans-serif;
 }
-.bar:hover {
-  fill: brown;
+.tick > line {
+	fill: none;
+	stroke: black;
 }
-.axis {
-  font: 10px sans-serif;
+.tick > text {
+	fill: black;
 }
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
+.selected {
+	stroke: red;
+	fill:red;
 }
-.x.axis path {
-  display: none;
+.selected2 {
+	stroke: orange;
+	fill:orange;
+}
+path.domain {
+	fill: none;
+	stroke-width: 2px;
+	stroke: black;
+}
+#wrapper {
+	clear:both;
+}
+#chart1 {
+    float:left;
+    left: 50px;
+}
+#chart2{
+	float:left;
+}
+#chart3 {
+	float:left;
+	margin-top: 30px;
+	margin-left: 20px;
+}
+.brush .extent {
+	fill-opacity: .1;
+	stroke: #fff;
+	shape-rendering: crispEdges;
 }
