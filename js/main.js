@@ -539,7 +539,7 @@ d3.csv("./data/movies.csv", function(csv) {
 		.attr("x", width-16)
 		.attr("y", height - 35)
 		.style("text-anchor", "end")
-		.text("Gross");
+		.text("IMDB Score");
 
 
     chart1 // or something else that selects the SVG element in your visualizations
@@ -553,7 +553,7 @@ d3.csv("./data/movies.csv", function(csv) {
 		.attr("y", 60)
 		.attr("dy", ".71em")
 		.style("text-anchor", "end")
-		.text("IMDB Score");
+		.text("Gross");
 
 	// chart1.attr("transform", "translate(50,0)");
 
