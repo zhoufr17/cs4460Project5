@@ -63,7 +63,6 @@ d3.csv("./data/movies.csv", function(csv) {
 	var num_critic_for_reviewsExtent = d3.extent(csv, function(row) {return row.num_critic_for_reviews});
 	//Filters
 
-
 	// Graph 1
 	var grossExtent = d3.extent(csv, function(row) {return row.gross});
 	// console.log("Got here");
@@ -122,6 +121,53 @@ d3.csv("./data/movies.csv", function(csv) {
 	                .append("svg:svg")
 	                .attr("width",width)
 	                .attr("height",height);
+
+
+	d3.select(document.getElementById("Filters"))
+    .append("p")
+    .append("button")
+    .style("border", "1px solid black")
+    .text("Filter Data")
+    .on('click', function() {
+        var colorSelected = d3.select("#color").node().value;
+        var contentRatingSelected = d3.select("#contentRating").node().value;
+        var language = d3.select("#language").node().value;
+        var genre = d3.select("#genre").node().value;
+        var grossCutoff = document.getElementById("grossCutoff").value;
+        var titleYear = Number(document.getElementById("titleYear").value);
+
+
+        d3.selectAll("circle").style("opacity", 1);
+
+        //console.log(grossCutoff);
+        //console.log(contentRatingSelected);
+        //console.log(language);
+        //console.log(genre);
+        //console.log(titleYear);
+
+
+        var test = d3.selectAll("circle").filter(function(d,i) {
+            var filterCriteria = ((d.color == colorSelected || colorSelected == "All") 
+                && (d.content_rating == contentRatingSelected || contentRatingSelected == "All")
+                && (d.language == language || language == "All") && d.gross >= grossCutoff && d.title_year === titleYear);
+
+            if(!filterCriteria) {
+                return d;
+            }
+        });
+        test.style("opacity", 0);
+        console.log(test);
+    });
+
+
+	d3.select(document.getElementById("Filters"))
+    .append("p")
+    .append("button")
+    .style("border", "1px solid black")
+    .text("Reset Filter")
+    .on('click', function() {
+        d3.selectAll("circle").style("opacity", 1);
+    });
 
 
 	 /******************************************
