@@ -103,6 +103,7 @@ d3.csv("./data/movies.csv", function(csv) {
 	var yAxis2 = d3.axisLeft().scale(yScale2);
 	
 	var xAxis3 = d3.axisBottom().scale(xScale3);
+
     var yAxis3 = d3.axisLeft().scale(yScale3);
 
 
@@ -117,10 +118,10 @@ d3.csv("./data/movies.csv", function(csv) {
 	                .attr("width",width)
 					.attr("height",height);
 					
-	// var chart3 = d3.select("#chart3")
-	//                 .append("svg:svg")
-	//                 .attr("width",width)
-	//                 .attr("height",height);
+	var chart3 = d3.select("#chart3")
+	                .append("svg:svg")
+	                .attr("width",width)
+	                .attr("height",height);
 
 
 	 /******************************************
@@ -313,8 +314,35 @@ d3.csv("./data/movies.csv", function(csv) {
 			actResult.text(d.ACT);
 			gpaResult.text(d.GPA);
        });
-    
+	
+	   
+	var temp3= chart3.selectAll("circle")
+	   .data(csv)
+	   .enter()
+	   .append("circle")
+	   .attr("id",function(d,i) {return i;} )
+	   .attr("stroke", "black")
+	   .attr("cx", function(d) { return xScale3(d.duration); })
+	   .attr("cy", function(d) { return yScale3(d.director_facebook_likes); })
+	   .attr("r", 2)
+	   .on("click", function(d,i){ 
+			d3.selectAll("circle")
+				.classed('selected', false);
+			var index = i;
+			var circles = chart1.selectAll("circle")
+					.filter(function(d,i) {
+					return i == index;
+				});
+				console.log(circles);
+			// circles.style("fill", "red");
+			circles.classed('selected', true);
+			satmResult.text(d.SATM);
+			satvResult.text(d.SATV);
+			actResult.text(d.ACT);
+			gpaResult.text(d.GPA);
+       });
 
+ //////////////////////////////////////////////////////////////////////////////////////////////
 
     chart1 // or something else that selects the SVG element in your visualizations
 		.append("g") // create a group node
@@ -372,6 +400,34 @@ d3.csv("./data/movies.csv", function(csv) {
 		.text("Movie Facebook Likes");
 
 	// chart2.attr("transform", "translate(50,0)");
+
+
+	chart3 // or something else that selects the SVG element in your visualizations
+		.append("g") // create a group node
+		.attr("transform", "translate(0,"+ (width -30)+ ")")
+		.call(xAxis3);
+
+	chart3
+		.append("text")
+		.attr("class", "label")
+		.attr("x", width-16)
+		.attr("y", height - 35)
+		.style("text-anchor", "end")
+		.text("Duration (min)");
+
+
+    chart3 // or something else that selects the SVG element in your visualizations
+		.append("g") // create a group node
+		.attr("transform", "translate(50, 0)")
+		.call(yAxis3);
+	chart3
+		.append("text")
+		.attr("class", "label")
+		.attr("transform", "rotate(-90)")
+		.attr("y", 60)
+		.attr("dy", ".71em")
+		.style("text-anchor", "end")
+		.text("Director Facebook Likes");
 
 
 	});

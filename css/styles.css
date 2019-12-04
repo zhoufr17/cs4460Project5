@@ -32,9 +32,10 @@ path.domain {
 	float:left;
 }
 #chart3 {
-	float:left;
+	float: bottom;
 	margin-top: 30px;
-	margin-left: 20px;
+  margin-left: 20px;
+  margin-bottom: 40px;
 }
 .brush .extent {
 	fill-opacity: .1;
