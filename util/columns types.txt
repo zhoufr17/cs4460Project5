@@ -26,3 +26,27 @@ actor_2_facebook_likes,
 imdb_score,
 aspect_ratio,
 movie_facebook_likes
+
+
+/////////////////////////////////////////////////////////
+
+## Filter categories
+color
+genres -- dropdown?
+country
+language
+content_rating
+title_year
+
+
+## Graph 1
+gross
+imdb_score
+
+## Graph 2
+movie_facebook_likes
+budget
+
+## Graph 3
+duration
+director_facebook_likes

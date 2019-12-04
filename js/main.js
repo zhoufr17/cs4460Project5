@@ -46,7 +46,6 @@ d3.csv("./data/movies.csv", function(csv) {
 		// console.log(csv[i].movie_imdb_link);
 	}
 
-	var director_facebook_likesExtent = d3.extent(csv, function(row) {return row.director_facebook_likes});
 	var actor_1_facebook_likesExtent = d3.extent(csv, function(row) {return row.actor_1_facebook_likes});
 	var actor_2_facebook_likesExtent = d3.extent(csv, function(row) {return row.actor_2_facebook_likes});
 	var actor_3_facebook_likesExtent = d3.extent(csv, function(row) {return row.actor_3_facebook_likes});
@@ -57,17 +56,29 @@ d3.csv("./data/movies.csv", function(csv) {
 	var actor_3_name = d3.extent(csv, function(row) {return row.actor_3_name});
 
 	var durationExtent = d3.extent(csv, function(row) {return row.duration});
-	var grossExtent = d3.extent(csv, function(row) {return row.gross});
 	var budgetExtent = d3.extent(csv, function(row) {return row.budget});
 	var title_yearExtent = d3.extent(csv, function(row) {return row.title_year});
-	var imdb_scoreExtent = d3.extent(csv, function(row) {return row.imdb_score});
 	var aspect_ratioExtent = d3.extent(csv, function(row) {return row.aspect_ratio});
 	var num_voted_usersExtent = d3.extent(csv, function(row) {return row.num_voted_users});
 	var facenumber_in_posterExtent = d3.extent(csv, function(row) {return row.facenumber_in_poster});
 	var num_user_for_reviewsExtent = d3.extent(csv, function(row) {return row.num_user_for_reviews});
 	var num_critic_for_reviewsExtent = d3.extent(csv, function(row) {return row.num_critic_for_reviews});
-	
-	
+	var movie_facebook_likesExtent = d3.extent(csv, function(row) {return row.movie_facebook_likes});
+
+
+
+	// Graph 1
+	var grossExtent = d3.extent(csv, function(row) {return row.gross});
+	var imdb_scoreExtent = d3.extent(csv, function(row) {return row.imdb_score});
+
+	// Graph 2
+	var movie_facebook_likesExtent = d3.extent(csv, function(row) {return row.movie_facebook_likes});
+	var budgetExtent = d3.extent(csv, function(row) {return row.budget});
+
+	// Graph 3
+	var durationExtent = d3.extent(csv, function(row) {return row.duration});
+	var director_facebook_likesExtent = d3.extent(csv, function(row) {return row.director_facebook_likes});
+
 
 
 
