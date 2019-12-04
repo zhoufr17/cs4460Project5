@@ -213,6 +213,11 @@ d3.csv("./data/movies.csv", function(csv) {
 		.attr('class', 'brush')
 		.call(brush)
 		.on("click", function(d,i) {
+		    movieResult.text("");
+		    var circles = d3.selectAll("circle");
+		    circles.classed("selected", false);
+		    circles.classed("selected2", false);
+		    circles.classed*("selected3", false);
 			// satmResult.text("");
 			// satvResult.text("");
 			// actResult.text("");
@@ -301,6 +306,11 @@ d3.csv("./data/movies.csv", function(csv) {
 			.attr('class', 'brush2')
 			.call(brush2)
 			.on("click", function(d,i) {
+			    movieResult.text("");
+			    var circles = d3.selectAll("circle");
+			    circles.classed("selected", false);
+			    circles.classed("selected2", false);
+			    circles.classed*("selected3", false);
 				// satmResult.text("");
 				// satvResult.text("");
 				// actResult.text("");
@@ -376,9 +386,14 @@ d3.csv("./data/movies.csv", function(csv) {
 	
 
 	var brushCell3 = chart3.append('g')
-			.attr('class', 'brush2')
+			.attr('class', 'brush3')
 			.call(brush3)
 			.on("click", function(d,i) {
+			    movieResult.text("");
+			    var circles = d3.selectAll("circle");
+			    circles.classed("selected", false);
+			    circles.classed("selected2", false);
+			    circles.classed*("selected3", false);
 				// satmResult.text("");
 				// satvResult.text("");
 				// actResult.text("");
@@ -455,22 +470,28 @@ d3.csv("./data/movies.csv", function(csv) {
 	   .attr("cx", function(d) { return xScale(d.imdb_score); })
 	   .attr("cy", function(d) { return yScale(d.gross); })
 	   .attr("r", 3)
-	   .on("click", function(d,i){ 
-			d3.selectAll("circle")
-				.classed("selected2", false);
+	   .on("click", function(d,i){
+           
+	       var circles = d3.selectAll("circle");
+
+	       circles.classed("selected", false);
+	       circles.classed("selected2", false);
+	       circles.classed("selected3", false);
 
 
-		   var index = i;
-		   var circles = chart2.selectAll("circle")
-					.filter(function(d,i) {
-					return i == index;
-				});
+	       var index = i;
+
+	       var chart1Circle = chart1.selectAll("circle").filter(function(d,i) {
+	           return i == index}).classed("selected", true);
+
+	       var chart2Circle = chart2.selectAll("circle").filter(function(d,i) {
+	           return i == index}).classed("selected2", true);
+
+	       var chart3Circle = chart3.selectAll("circle").filter(function(d,i) {
+	           return i == index}).classed("selected3", true);
 
 			//console.log(circles);
 			// circles.style("fill", "orange");\
-			circles.classed('selected', true);
-			circles.classed('selected2', true);
-			circles.classed('selected3', true);
 			
 			movieResult.text(d.movie_title);
 
@@ -486,18 +507,23 @@ d3.csv("./data/movies.csv", function(csv) {
 	   .attr("cy", function(d) { return yScale2(d.movie_facebook_likes); })
 	   .attr("r", 3)
 	   .on("click", function(d,i){ 
-			d3.selectAll("circle")
-				.classed('selected', false);
-			var index = i;
-			var circles = chart1.selectAll("circle")
-					.filter(function(d,i) {
-					return i == index;
-				});
-				//console.log(circles);
-			// circles.style("fill", "red");
-			circles.classed('selected', true);
-			circles.classed('selected2', true);
-			circles.classed('selected3', true);
+	       var circles = d3.selectAll("circle");
+
+	       circles.classed("selected", false);
+	       circles.classed("selected2", false);
+	       circles.classed("selected3", false);
+
+
+	       var index = i;
+
+	       var chart1Circle = chart1.selectAll("circle").filter(function(d,i) {
+	           return i == index}).classed("selected", true);
+
+	       var chart2Circle = chart2.selectAll("circle").filter(function(d,i) {
+	           return i == index}).classed("selected2", true);
+
+	       var chart3Circle = chart3.selectAll("circle").filter(function(d,i) {
+	           return i == index}).classed("selected3", true);
 
 			movieResult.text(d.movie_title);
 
@@ -514,18 +540,23 @@ d3.csv("./data/movies.csv", function(csv) {
 	   .attr("cy", function(d) { return yScale3(d.director_facebook_likes); })
 	   .attr("r", 3)
 	   .on("click", function(d,i){ 
-			d3.selectAll("circle")
-				.classed('selected', false);
-			var index = i;
-			var circles = chart1.selectAll("circle")
-					.filter(function(d,i) {
-					return i == index;
-				});
-				//console.log(circles);
-			// circles.style("fill", "red");
-			circles.classed('selected', true);
-			circles.classed('selected2', true);
-			circles.classed('selected3', true);
+	       var circles = d3.selectAll("circle");
+
+	       circles.classed("selected", false);
+	       circles.classed("selected2", false);
+	       circles.classed("selected3", false);
+
+
+	       var index = i;
+
+	       var chart1Circle = chart1.selectAll("circle").filter(function(d,i) {
+	           return i == index}).classed("selected", true);
+
+	       var chart2Circle = chart2.selectAll("circle").filter(function(d,i) {
+	           return i == index}).classed("selected2", true);
+
+	       var chart3Circle = chart3.selectAll("circle").filter(function(d,i) {
+	           return i == index}).classed("selected3", true);
 			
 			movieResult.text(d.movie_title);
 
