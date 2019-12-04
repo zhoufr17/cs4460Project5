@@ -55,20 +55,19 @@ d3.csv("./data/movies.csv", function(csv) {
 	var actor_2_name = d3.extent(csv, function(row) {return row.actor_2_name});
 	var actor_3_name = d3.extent(csv, function(row) {return row.actor_3_name});
 
-	var durationExtent = d3.extent(csv, function(row) {return row.duration});
-	var budgetExtent = d3.extent(csv, function(row) {return row.budget});
 	var title_yearExtent = d3.extent(csv, function(row) {return row.title_year});
 	var aspect_ratioExtent = d3.extent(csv, function(row) {return row.aspect_ratio});
 	var num_voted_usersExtent = d3.extent(csv, function(row) {return row.num_voted_users});
 	var facenumber_in_posterExtent = d3.extent(csv, function(row) {return row.facenumber_in_poster});
 	var num_user_for_reviewsExtent = d3.extent(csv, function(row) {return row.num_user_for_reviews});
 	var num_critic_for_reviewsExtent = d3.extent(csv, function(row) {return row.num_critic_for_reviews});
-	var movie_facebook_likesExtent = d3.extent(csv, function(row) {return row.movie_facebook_likes});
-
+	//Filters
 
 
 	// Graph 1
 	var grossExtent = d3.extent(csv, function(row) {return row.gross});
+	console.log("Got here");
+	console.log(grossExtent);
 	var imdb_scoreExtent = d3.extent(csv, function(row) {return row.imdb_score});
 
 	// Graph 2
@@ -83,29 +82,40 @@ d3.csv("./data/movies.csv", function(csv) {
 
 
     // Axis setup
-    var xScale = d3.scaleLinear().domain(director_facebook_likesExtent).range([50, 470]);
-    var yScale = d3.scaleLinear().domain(actor_1_facebook_likesExtent).range([470, 30]);
+    var xScale = d3.scaleLinear().domain(imdb_scoreExtent).range([50, 470]);
+    var yScale = d3.scaleLinear().domain(grossExtent).range([470, 30]);
  
-    var xScale2 = d3.scaleLinear().domain(actor_2_facebook_likesExtent).range([50, 470]);
-    var yScale2 = d3.scaleLinear().domain(actor_3_facebook_likesExtent).range([470, 30]);
+    var xScale2 = d3.scaleLinear().domain(movie_facebook_likesExtent).range([50, 470]);
+	var yScale2 = d3.scaleLinear().domain(budgetExtent).range([470, 30]);
+	
+	var xScale3 = d3.scaleLinear().domain(durationExtent).range([50, 470]);
+	var yScale3 = d3.scaleLinear().domain(director_facebook_likesExtent).range([470, 30]);
      
     var xAxis = d3.axisBottom().scale(xScale);
     var yAxis = d3.axisLeft().scale(yScale);
   
     var xAxis2 = d3.axisBottom().scale(xScale2);
-    var yAxis2 = d3.axisLeft().scale(yScale2);
+	var yAxis2 = d3.axisLeft().scale(yScale2);
+	
+	var xAxis3 = d3.axisBottom().scale(xScale3);
+    var yAxis3 = d3.axisLeft().scale(yScale3);
+
 
     //Create SVGs for charts
     var chart1 = d3.select("#chart1")
 	                .append("svg:svg")
 	                .attr("width",width)
-	                .attr("height",height);
-
-
+					.attr("height",height);
+					
     var chart2 = d3.select("#chart2")
 	                .append("svg:svg")
 	                .attr("width",width)
-	                .attr("height",height);
+					.attr("height",height);
+					
+	// var chart3 = d3.select("#chart3")
+	//                 .append("svg:svg")
+	//                 .attr("width",width)
+	//                 .attr("height",height);
 
 
 	 /******************************************
@@ -255,8 +265,6 @@ d3.csv("./data/movies.csv", function(csv) {
 	   .attr("r", 5)
 	   .on("click", function(d,i){ 
 			d3.selectAll("circle")
-				// .style("fill", "none");
-				// .style("fill", "black");
 				.classed("selected2", false);
 
 
@@ -313,7 +321,7 @@ d3.csv("./data/movies.csv", function(csv) {
 		.attr("x", width-16)
 		.attr("y", height - 35)
 		.style("text-anchor", "end")
-		.text("SATM");
+		.text("IMBD Score");
 
 
     chart1 // or something else that selects the SVG element in your visualizations
@@ -327,7 +335,7 @@ d3.csv("./data/movies.csv", function(csv) {
 		.attr("y", 60)
 		.attr("dy", ".71em")
 		.style("text-anchor", "end")
-		.text("SATV");
+		.text("Gross");
 
 
 
@@ -342,7 +350,7 @@ d3.csv("./data/movies.csv", function(csv) {
 		.attr("x", width-16)
 		.attr("y", height - 35)
 		.style("text-anchor", "end")
-		.text("ACT");
+		.text("Movie Facebook Likes");
 
 
     chart2 // or something else that selects the SVG element in your visualizations
@@ -356,6 +364,6 @@ d3.csv("./data/movies.csv", function(csv) {
 		.attr("y", 6)
 		.attr("dy", ".71em")
 		.style("text-anchor", "end")
-		.text("GPA");
+		.text("Budget");
 
 	});
