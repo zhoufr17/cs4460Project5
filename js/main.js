@@ -185,7 +185,7 @@ d3.csv("./data/movies.csv", function(csv) {
             }
         });
         hidden.transition().duration(function(d) {
-                                    return Math.floor(Math.random() * 1500 + 50)}).style("opacity", 0);
+            return Math.floor(Math.random() * 1500 + 50)}).style("opacity", 0).each(function(){this.disabled = true;});
     });
 
 
@@ -523,12 +523,35 @@ d3.csv("./data/movies.csv", function(csv) {
 	   .attr("r", 3)
 	   .on("click", function(d,i){
            
-	       var circles = d3.selectAll("circle");
 
-	       circles.classed("selected", false);
-	       circles.classed("selected2", false);
-	       circles.classed("selected3", false);
 
+	       if (d3.select(this).attr("style") == null || d3.select(this).attr("style") == "opacity: 1;"){
+	           var circles = d3.selectAll("circle");
+
+	           circles.classed("selected", false);
+	           circles.classed("selected2", false);
+	           circles.classed("selected3", false);
+
+	           brushCell1.call(brush.move, null);
+	           brushCell2.call(brush2.move, null);
+	           brushCell3.call(brush3.move, null);
+
+	           movieResult.text(d.movie_title);
+	           aspectResult.text(d.aspect_ratio);
+	           imdbLinkResult.text(d.movie_imdb_link);
+	           directorResult.text(d.director_name);
+	           actor1Result.text(d.actor_1_name);
+	           actor2Result.text(d.actor_2_name);
+	           actor3Result.text(d.actor_3_name);
+	           userReviewResult.text(d.num_user_for_reviews);
+	           criticReviewResult.text(d.num_critic_for_reviews);
+	           grossResult.text(d.gross);
+	           imdbScoreResult.text(d.imdb_score);
+	           movieFLikesResult.text(d.movie_facebook_likes);
+	           budgetResult.text(d.budget);
+	           directorFLikesResult.text(d.director_facebook_likes);
+	           durationResult.text(d.duration);
+	       }
 
 	       var index = i;
 
@@ -544,21 +567,6 @@ d3.csv("./data/movies.csv", function(csv) {
 			//console.log(circles);
 			// circles.style("fill", "orange");\
 			
-			movieResult.text(d.movie_title);
-			aspectResult.text(d.aspect_ratio);
-			imdbLinkResult.text(d.movie_imdb_link);
-			directorResult.text(d.director_name);
-			actor1Result.text(d.actor_1_name);
-			actor2Result.text(d.actor_2_name);
-			actor3Result.text(d.actor_3_name);
-			userReviewResult.text(d.num_user_for_reviews);
-			criticReviewResult.text(d.num_critic_for_reviews);
-			grossResult.text(d.gross);
-			imdbScoreResult.text(d.imdb_score);
-			movieFLikesResult.text(d.movie_facebook_likes);
-			budgetResult.text(d.budget);
-			directorFLikesResult.text(d.director_facebook_likes);
-			durationResult.text(d.duration);
 
        });
 
@@ -572,12 +580,35 @@ d3.csv("./data/movies.csv", function(csv) {
 	   .attr("cy", function(d) { return yScale2(d.movie_facebook_likes); })
 	   .attr("r", 3)
 	   .on("click", function(d,i){ 
-	       var circles = d3.selectAll("circle");
 
-	       circles.classed("selected", false);
-	       circles.classed("selected2", false);
-	       circles.classed("selected3", false);
+	       if (d3.select(this).attr("style") == null || d3.select(this).attr("style") == "opacity: 1;"){
 
+	           var circles = d3.selectAll("circle");
+
+	           circles.classed("selected", false);
+	           circles.classed("selected2", false);
+	           circles.classed("selected3", false);
+
+	           brushCell1.call(brush.move, null);
+	           brushCell2.call(brush2.move, null);
+	           brushCell3.call(brush3.move, null);
+
+	           movieResult.text(d.movie_title);
+	           aspectResult.text(d.aspect_ratio);
+	           imdbLinkResult.text(d.movie_imdb_link);
+	           directorResult.text(d.director_name);
+	           actor1Result.text(d.actor_1_name);
+	           actor2Result.text(d.actor_2_name);
+	           actor3Result.text(d.actor_3_name);
+	           userReviewResult.text(d.num_user_for_reviews);
+	           criticReviewResult.text(d.num_critic_for_reviews);
+	           grossResult.text(d.gross);
+	           imdbScoreResult.text(d.imdb_score);
+	           movieFLikesResult.text(d.movie_facebook_likes);
+	           budgetResult.text(d.budget);
+	           directorFLikesResult.text(d.director_facebook_likes);
+	           durationResult.text(d.duration);
+	       }
 
 	       var index = i;
 
@@ -590,21 +621,6 @@ d3.csv("./data/movies.csv", function(csv) {
 	       var chart3Circle = chart3.selectAll("circle").filter(function(d,i) {
 	           return i == index}).classed("selected3", true);
 
-			   movieResult.text(d.movie_title);
-			   aspectResult.text(d.aspect_ratio);
-			   imdbLinkResult.text(d.movie_imdb_link);
-			   directorResult.text(d.director_name);
-			   actor1Result.text(d.actor_1_name);
-			   actor2Result.text(d.actor_2_name);
-			   actor3Result.text(d.actor_3_name);
-			   userReviewResult.text(d.num_user_for_reviews);
-			   criticReviewResult.text(d.num_critic_for_reviews);
-			   grossResult.text(d.gross);
-			   imdbScoreResult.text(d.imdb_score);
-			   movieFLikesResult.text(d.movie_facebook_likes);
-			   budgetResult.text(d.budget);
-			   directorFLikesResult.text(d.director_facebook_likes);
-			   durationResult.text(d.duration);
 
        });
 	
@@ -619,12 +635,35 @@ d3.csv("./data/movies.csv", function(csv) {
 	   .attr("cy", function(d) { return yScale3(d.director_facebook_likes); })
 	   .attr("r", 3)
 	   .on("click", function(d,i){ 
-	       var circles = d3.selectAll("circle");
 
-	       circles.classed("selected", false);
-	       circles.classed("selected2", false);
-	       circles.classed("selected3", false);
+	       if (d3.select(this).attr("style") == null || d3.select(this).attr("style") == "opacity: 1;"){
 
+	           var circles = d3.selectAll("circle");
+
+	           circles.classed("selected", false);
+	           circles.classed("selected2", false);
+	           circles.classed("selected3", false);
+
+	           brushCell1.call(brush.move, null);
+	           brushCell2.call(brush2.move, null);
+	           brushCell3.call(brush3.move, null);
+
+	           movieResult.text(d.movie_title);
+	           aspectResult.text(d.aspect_ratio);
+	           imdbLinkResult.text(d.movie_imdb_link);
+	           directorResult.text(d.director_name);
+	           actor1Result.text(d.actor_1_name);
+	           actor2Result.text(d.actor_2_name);
+	           actor3Result.text(d.actor_3_name);
+	           userReviewResult.text(d.num_user_for_reviews);
+	           criticReviewResult.text(d.num_critic_for_reviews);
+	           grossResult.text(d.gross);
+	           imdbScoreResult.text(d.imdb_score);
+	           movieFLikesResult.text(d.movie_facebook_likes);
+	           budgetResult.text(d.budget);
+	           directorFLikesResult.text(d.director_facebook_likes);
+	           durationResult.text(d.duration);
+	       }
 
 	       var index = i;
 
@@ -637,21 +676,6 @@ d3.csv("./data/movies.csv", function(csv) {
 	       var chart3Circle = chart3.selectAll("circle").filter(function(d,i) {
 	           return i == index}).classed("selected3", true);
 		
-			movieResult.text(d.movie_title);
-			aspectResult.text(d.aspect_ratio);
-			imdbLinkResult.text(d.movie_imdb_link);
-			directorResult.text(d.director_name);
-			actor1Result.text(d.actor_1_name);
-			actor2Result.text(d.actor_2_name);
-			actor3Result.text(d.actor_3_name);
-			userReviewResult.text(d.num_user_for_reviews);
-			criticReviewResult.text(d.num_critic_for_reviews);
-			grossResult.text(d.gross);
-			imdbScoreResult.text(d.imdb_score);
-			movieFLikesResult.text(d.movie_facebook_likes);
-			budgetResult.text(d.budget);
-			directorFLikesResult.text(d.director_facebook_likes);
-			durationResult.text(d.duration);
 
        });
 
